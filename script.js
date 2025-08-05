@@ -1,5 +1,5 @@
 const container = document.querySelector('.container');
-const cubes = document.querySelectorAll('.cube');
+const cubes = document.querySelectorAll('.items .cube');
 
 let selectedCube = null;
 let offsetX = 0;
