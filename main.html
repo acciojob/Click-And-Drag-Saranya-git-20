@@ -6,91 +6,14 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="items">
-    <div class="item item1">01</div>
-    <div class="item item2">02</div>
-    <div class="item item3">03</div>
-    <div class="item item4">04</div>
-    <div class="item item5">05</div>
-    <div class="item item6">06</div>
-    <div class="item item7">07</div>
-    <div class="item item8">08</div>
-    <div class="item item9">09</div>
-    <div class="item item10">10</div>
-    <div class="item item11">11</div>
-    <div class="item item12">12</div>
-    <div class="item item13">13</div>
-    <div class="item item14">14</div>
-    <div class="item item15">15</div>
-    <div class="item item16">16</div>
-    <div class="item item17">17</div>
-    <div class="item item18">18</div>
-    <div class="item item19">19</div>
-    <div class="item item20">20</div>
-    <div class="item item21">21</div>
-    <div class="item item22">22</div>
-    <div class="item item23">23</div>
-    <div class="item item24">24</div>
-    <div class="item item25">25</div>
+  <div class="container">
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
   </div>
 
-<script>
-	const container = document.querySelector('.items');
-const items = document.querySelectorAll('.item');
-
-let selectedItem = null;
-let offsetX = 0;
-let offsetY = 0;
-
-// Make each item absolutely positioned inside container
-items.forEach((item, index) => {
-  // Position in grid (5 items per row)
-  const col = index % 5;
-  const row = Math.floor(index / 5);
-  item.style.position = 'absolute';
-  item.style.left = `${col * 100}px`;
-  item.style.top = `${row * 100}px`;
-
-  // Mouse down to start dragging
-  item.addEventListener('mousedown', (e) => {
-    selectedItem = item;
-    selectedItem.style.zIndex = 1000;
-    offsetX = e.offsetX;
-    offsetY = e.offsetY;
-    item.classList.add('dragging');
-  });
-});
-
-// Mouse move to drag item
-document.addEventListener('mousemove', (e) => {
-  if (selectedItem) {
-    const containerRect = container.getBoundingClientRect();
-    const itemWidth = selectedItem.offsetWidth;
-    const itemHeight = selectedItem.offsetHeight;
-
-    // Calculate new position
-    let x = e.clientX - containerRect.left - offsetX;
-    let y = e.clientY - containerRect.top - offsetY;
-
-    // Constrain inside container
-    x = Math.max(0, Math.min(x, container.clientWidth - itemWidth));
-    y = Math.max(0, Math.min(y, container.clientHeight - itemHeight));
-
-    selectedItem.style.left = `${x}px`;
-    selectedItem.style.top = `${y}px`;
-  }
-});
-
-// Mouse up to stop dragging
-document.addEventListener('mouseup', () => {
-  if (selectedItem) {
-    selectedItem.classList.remove('dragging');
-    selectedItem.style.zIndex = '';
-    selectedItem = null;
-  }
-});
-
-</script>
-
-  </body>
+  <script src="script.js"></script>
+</body>
 </html>
